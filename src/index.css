@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.headertext {
+  text-align: center;
+}
+.animal-container {
+  display: inline-block;
+  margin: 20px;
+  text-align: center;
+
+  
+}
