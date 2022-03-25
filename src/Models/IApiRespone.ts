@@ -9,5 +9,5 @@ export interface IApiResponse {
     imageUrl: string;
     medicine: string;
     isFed: boolean;
-    lastFed: Date;
+    lastFed: string;
 }

@@ -8,8 +8,8 @@ export function AnimalDetails() {
     const [animalId, setAnimalId] = useState(0);
     const [animalToShow, setAnimalToShow] = useState<IApiResponse>();
     const [animals, setAnimals] = useState<IApiResponse[]>([]);
-    const [disableButton, setDisableButton] = useState(false)
-    const [hungerStatus, setHungerStatus] = useState("ja")
+    const [disableButton, setDisableButton] = useState(false);
+    const [hungerStatus, setHungerStatus] = useState(true);
     let {id} = useParams();
    
 
@@ -39,10 +39,11 @@ export function AnimalDetails() {
 
     function handleClick() {
         console.log("Klickade")
-        animals[animalId - 1].isFed = true
-        console.log(animals[animalId - 1])
+        animals[animalId - 1].isFed = true;
+        animals[animalId - 1].lastFed = new Date().toDateString()
+        console.log(animals[animalId - 1]);
         setDisableButton(true);
-        setHungerStatus("nej");
+        setHungerStatus(false);
         localStorage.setItem("animals", JSON.stringify(animals))
         
     }
@@ -58,20 +59,18 @@ export function AnimalDetails() {
                 <ul>
                     <li>Latinskt namn: {animalToShow?.latinName}</li>
                     <li>Födelseår: {animalToShow?.yearOfBirth}</li>
-                    <li>Hungrig: {hungerStatus} </li>
+                    <li>Åt senast: {animalToShow?.lastFed}</li>
                 </ul>
             </header>
             <article>
                 {animalToShow?.longDescription}
             </article>
-            <button disabled={disableButton} onClick={handleClick}>Vill du donera 50:- för att mata {animalToShow?.name}?</button>
+            <button disabled={disableButton} onClick={handleClick}>Vill du mata {animalToShow?.name}?</button>
         </section>
     
     </>)
 }
 
 
-function handleClick(): import("react").MouseEventHandler<HTMLButtonElement> | undefined {
-    throw new Error("Function not implemented.");
-}
+
 
